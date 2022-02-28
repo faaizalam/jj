@@ -1,0 +1,295 @@
+* {
+  margin: 0;
+  top: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  height: 100vh;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#root {
+  height: 100%;
+}
+/* layout */
+
+.grid-cont {
+  display: grid;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+  grid-template-columns: 1fr;
+  grid-template-rows: 5rem 1fr 5rem;
+  height: 100%;
+}
+header {
+  grid-area: header;
+  background-color: grey;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 1px;
+}
+main {
+  grid-area: main;
+  padding: 1rem;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  /* flex-wrap: wrap; */
+}
+.product-cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  flex-wrap: wrap;
+}
+footer {
+  grid-area: footer;
+  background-color: grey;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* common */
+a {
+  text-decoration: none;
+}
+a:hover {
+  color: #ff8000;
+}
+header a {
+  color: white;
+  padding: 1px;
+}
+a.brand {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+/* images */
+
+.medium {
+  display: flex;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  border: 1px solid grey;
+  margin: 10px;
+}
+.price {
+  font-weight: bold;
+  margin: 10px;
+}
+.name {
+  margin: 10px;
+  font-size: 15px;
+}
+.rating {
+  margin: 0.1rem;
+  color: gold;
+}
+
+.rating span:last-child {
+  color: black;
+}
+.sucess {
+  color: green;
+}
+.error {
+  color: red;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.primary {
+  width: 200px;
+  height: 50px;
+  background-color: orange;
+  font-size: large;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.primary:hover {
+  border: 1px solid black;
+}
+li {
+  list-style: none;
+}
+
+.alert {
+  padding: 1rem;
+  border: 2px solid black;
+  color: white;
+  font-size: x-large;
+  background-color: lightcoral;
+}
+.err {
+  /* display: flex; */
+  justify-content: center;
+  font-size: xx-large;
+  color: red;
+  padding: 5px;
+}
+.lo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: auto;
+  font-size: xx-large;
+  color: red;
+}
+/* .fa-spinner {
+ 
+} */
+/* .black {
+  color: black;
+  font-size: xx-large;
+} */
+
+/* forms */
+
+.forms {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  margin: auto;
+  width: 500px;
+  flex-direction: column;
+  padding: 5px;
+  border: 2px solid orangered;
+  border-radius: 20px;
+}
+input {
+  margin: 3px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  box-shadow: none;
+  outline: none;
+  border-radius: 5px;
+}
+.siginbutoon {
+  width: 400px;
+  height: 40px;
+  background-color: orange;
+  font-size: x-large;
+  border-radius: 5px;
+  flex-wrap: wrap;
+}
+
+/* drop down */
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+  padding: 5px;
+  flex-wrap: wrap;
+}
+.dropdown-cont {
+  position: absolute;
+  /* z-index: 1; */
+  display: none;
+  background-color: grey;
+
+  right: 0;
+  border-radius: 5px;
+  padding: 20px;
+  width: 120px;
+  margin-top: 25px;
+  /* height: 200px; */
+  margin-right: 10px;
+}
+.dropdown:hover .dropdown-cont {
+  display: block;
+}
+.Checkoutsteps > div {
+  border-top: 2px solid grey;
+  color: gray;
+
+  padding: 1rem;
+
+  /* width: 500px; */
+  flex: 1;
+  display: inline-block;
+}
+.Checkoutsteps {
+  display: flex;
+  justify-content: center;
+}
+
+.Checkoutsteps > div.active {
+  border-top-color: orangered;
+  color: orangered;
+  font-weight: bold;
+}
+.shippbutton {
+  width: 300px;
+  background-color: orange;
+  padding: 6px;
+}
+.shippbutton:hover {
+  background-color: orangered;
+}
+
+/* ship */
+.first {
+  display: flex;
+}
+.imges img {
+  height: 50px;
+  width: 50px;
+}
+.placeorder {
+  background-color: #ff8000;
+  width: 200px;
+  height: 50px;
+  border-radius: 20px;
+}
+.placeorder:hover {
+  border-color: black;
+}
+.green {
+  background-color: green;
+  display: flex;
+  justify-content: center;
+}
+.errors {
+  background-color: red;
+}
+/* tableorder */
+.tableorder {
+  border: 2px solid gray;
+  background-color: lightpink;
+}
+.Ordercont {
+  border: 2px solid gray;
+}
+.mains {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
