@@ -1,5 +1,9 @@
 import  Axios  from "axios"
-import { User_Profile_FAil, User_Profile_Req, User_Profile_succ, User_Profile_Upadte_fail, User_Profile_Upadte_Req, User_Profile_Upadte_succ, User_RE_FAil, User_Re_Req, User_RE_succ, User_Sig_succ, User_Sing_FAil, User_Sing_OUT, User_Sing_Req } from "../constants/USercon"
+
+
+import { User_info_fail, User_info_req, User_info_succ, User_Profile_FAil, User_Profile_Req, User_Profile_succ, User_Profile_Upadte_fail, User_Profile_Upadte_Req, User_Profile_Upadte_succ, User_RE_FAil, User_Re_Req, User_RE_succ, User_Sig_succ, User_Sing_FAil, User_Sing_OUT, User_Sing_Req } from "../constants/USercon"
+import { USER_Delete_fail, USER_Delete_REQ, USER_Delete_succ, USER_LIST_FAIL, USER_LIST_REQUEST, USER_LIST_SUCCESS } from "../constants/Userlist"
+import data from "../data"
 
 export const signin=({email,password})=>async(dispatch)=>{
     dispatch({type:User_Sing_Req,payload:{email,password}})
@@ -104,5 +108,122 @@ export const Updateprofile=(updated)=>async(dispatch,getState)=>{
        
    }
     
+
+}
+
+
+
+// export const ListUsers=()=>async(dispatch,getState)=>{
+//     dispatch({ type:USER_LIST_REQUEST})
+//     try {
+//         const {UseSigin:{userInfo}}=getState()
+//         const {data} =await Axios.get('/postman/users/userlists',{
+//             headers:{
+//                 Authorization: `Bearer ${userInfo.token}`
+//             }
+//          })
+//          dispatch({
+//              type:USER_LIST_SUCCESS,
+//              payload:data,
+//          })
+//     } catch (error) {
+ 
+//        dispatch({
+//            type:USER_LIST_FAIL,
+//            payload:error.message|| error.data.message
+//        })
+        
+//     }
+     
+ 
+//  }
+
+
+export const ListUsers=()=>async(dispatch,getState)=>{
+
+    dispatch({
+        type:USER_LIST_REQUEST
+    })
+    try {
+        const {UseSigin:{userInfo}}=getState()
+        const {data}=await Axios.get('/postman/users/userlists',{
+            headers:{
+                Authorization :`Bearer ${userInfo.token}`
+            }
+        })
+        dispatch({
+            type:USER_LIST_SUCCESS,
+            payload:data
+        })
+        
+    } catch (error) {
+
+        dispatch({
+            type:USER_LIST_FAIL,
+            error:data.error.message
+        })
+        
+    }
+
+
+}
+
+export const deleteUserAction=(x)=>async(dispatch,getState)=>{
+    dispatch({
+        type:USER_Delete_REQ
+    })
+     
+    try {
+        const {UseSigin:{userInfo}}=getState();
+        const {data}=await Axios.delete(`/postman/users/${x}`,{
+            headers:{
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        })
+        dispatch({
+            type:USER_Delete_succ,
+            payload:data
+        })
+        
+    } catch (error) {
+        const msgs= error.response.data.message 
+        // const msgs =error.response && error.response.data.message ? error.response.data.message: error.message;
+        dispatch({
+            type:USER_Delete_fail,
+            payload:msgs
+           
+        })
+        
+    }
+
+
+}
+
+export const Userinfo=(id)=>async(dispatch,getState)=>{
+    dispatch({
+        type:User_info_req
+    })
+    
+    try {
+        const {UseSigin:{userInfo}}=getState()
+        const {data}=await Axios.get(`/postman/users/${id}`,{
+            headers:{
+                Authorization: `Bearer ${userInfo.token}`
+            }
+
+        })
+        dispatch({
+            type:User_info_succ,
+            payload:data
+        })
+        
+    } catch (error) {
+         const msgs =error.response && error.response.data.message ? error.response.data.message: error.message;
+        dispatch({
+            type:User_info_fail,
+            payload:msgs
+        })
+    }
+
 
 }
